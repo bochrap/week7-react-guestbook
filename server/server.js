@@ -41,3 +41,9 @@ app.post("/posts", async (request, response) => {
   ]);
   response.json(newPost.rows[0]);
 });
+
+app.delete("/posts/:id", async (request, response) => {
+  const recordId = request.params.id;
+  const result = await db.query("DELETE FROM posts WHERE id = $1", [recordId]);
+  response.json(`Deleted entry wit id${recordId}`);
+});
