@@ -27,6 +27,13 @@ app.get("/posts", async (request, response) => {
   response.json(result.rows);
 });
 
+app.get("/posts/:id", async (request, response) => {
+  const recordId = request.params.id;
+
+  const result = await db.query(`SELECT * FROM posts WHERE id = $1`, [recordId]);
+  response.json(result.rows);
+});
+
 app.post("/posts", async (request, response) => {
   const title = request.body.title;
   const content = request.body.content;
@@ -65,5 +72,5 @@ app.put("/posts/:id/unlike", async (request, response) => {
 
   const updateLikes = await db.query(`UPDATE posts SET likes = likes ${operator} 1 WHERE id = $1 RETURNING *`, [recordId]);
 
-  response.json(`Like added to post with id#${recordId}`);
+  response.json(`Like removed from post with id#${recordId}`);
 });
