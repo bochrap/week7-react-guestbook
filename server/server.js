@@ -45,5 +45,25 @@ app.post("/posts", async (request, response) => {
 app.delete("/posts/:id", async (request, response) => {
   const recordId = request.params.id;
   const result = await db.query("DELETE FROM posts WHERE id = $1", [recordId]);
-  response.json(`Deleted entry wit id${recordId}`);
+  response.json(`Deleted entry wit id#${recordId}`);
+});
+
+app.put("/posts/:id/like", async (request, response) => {
+  const recordId = request.params.id;
+  //   const { likes } = request.body;
+  let operator = "+";
+
+  const updateLikes = await db.query(`UPDATE posts SET likes = likes ${operator} 1 WHERE id = $1 RETURNING *`, [recordId]);
+
+  response.json(`Like added to post with id#${recordId}`);
+});
+
+app.put("/posts/:id/unlike", async (request, response) => {
+  const recordId = request.params.id;
+  //   const { likes } = request.body;
+  let operator = "-";
+
+  const updateLikes = await db.query(`UPDATE posts SET likes = likes ${operator} 1 WHERE id = $1 RETURNING *`, [recordId]);
+
+  response.json(`Like added to post with id#${recordId}`);
 });
