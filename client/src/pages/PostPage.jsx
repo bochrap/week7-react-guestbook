@@ -5,6 +5,10 @@ export default function PostPage() {
   const [singlePost, setSinglePost] = useState({});
   let { id } = useParams();
 
+  function handleDelete() {
+    fetch(`http://localhost:8080/posts/${id}`, { method: `DELETE` });
+  }
+
   useEffect(() => {
     getSinglePost();
   }, []);
@@ -20,6 +24,7 @@ export default function PostPage() {
       <p>{singlePost.id}</p>
       <p>{singlePost.title}</p>
       <p>{singlePost.content}</p>
+      <button onClick={handleDelete}>DELETE POST</button>
     </div>
   );
 }
