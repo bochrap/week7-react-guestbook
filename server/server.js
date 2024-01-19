@@ -18,15 +18,18 @@ app.listen(PORT, () => {
   console.log(`Server is running at: http://localhost:${PORT}`);
 });
 
+//ROOT ACCESS
 app.get("/", (request, response) => {
   response.json("You are in the root folder");
 });
 
+//ALL POSTS
 app.get("/posts", async (request, response) => {
   const result = await db.query(`SELECT * FROM posts`);
   response.json(result.rows);
 });
 
+//SINGLE POST
 app.get("/posts/:id", async (request, response) => {
   const recordId = request.params.id;
 
@@ -34,6 +37,7 @@ app.get("/posts/:id", async (request, response) => {
   response.json(result.rows);
 });
 
+//NEW POST
 app.post("/posts", async (request, response) => {
   const title = request.body.title;
   const content = request.body.content;
@@ -55,6 +59,7 @@ app.delete("/posts/:id", async (request, response) => {
   response.json(`Deleted entry wit id#${recordId}`);
 });
 
+//ADD LIKE
 app.put("/posts/:id/like", async (request, response) => {
   const recordId = request.params.id;
   //   const { likes } = request.body;
@@ -65,6 +70,7 @@ app.put("/posts/:id/like", async (request, response) => {
   response.json(`Like added to post with id#${recordId}`);
 });
 
+//REMOVE LIKE
 app.put("/posts/:id/unlike", async (request, response) => {
   const recordId = request.params.id;
   //   const { likes } = request.body;
