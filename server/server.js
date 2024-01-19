@@ -30,7 +30,7 @@ app.get("/posts", async (request, response) => {
 });
 
 //SINGLE POST
-app.get("/post/:id", async (request, response) => {
+app.get("/posts/:id", async (request, response) => {
   const recordId = request.params.id;
 
   const result = await db.query(`SELECT * FROM posts WHERE id = $1`, [recordId]);
@@ -44,7 +44,7 @@ app.get("/posts/category/:category", async (request, response) => {
   const result = await db.query(`SELECT posts.title, posts.content, categories.name AS category 
   FROM posts
   JOIN categories ON posts.category_id = categories.id
-  WHERE categories.id = ${categoryId} `);
+  WHERE categories.id = ${categoryId}`);
 
   response.json(result.rows);
 });

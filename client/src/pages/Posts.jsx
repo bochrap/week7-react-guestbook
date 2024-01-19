@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function Posts() {
   const [allPosts, setAllPosts] = useState([]);
@@ -21,7 +22,9 @@ export default function Posts() {
         {allPosts.map((item) => {
           return (
             <div key={"div" + item.id}>
-              <li key={item.id + item.title}>{item.title}</li>
+              <li key={item.id + item.title}>
+                <Link to={`/posts/${item.id}`}>{item.title}</Link>
+              </li>
               <p>Likes: {item.likes}</p>
             </div>
           );
