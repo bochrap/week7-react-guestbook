@@ -8,9 +8,25 @@ export default function NewPost() {
     category_id: "",
   });
 
+  // useEffect(() => {
+  //   async function handleSubmit(event) {
+  //     event.preventDefault();
+  //   }
+  //   handleSubmit()
+  // }, [])
+
   function handleSubmit(event) {
     event.preventDefault();
     console.log(formValues);
+
+    fetch(`http://localhost:8080/posts`, {
+      method: `POST`,
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(formValues),
+    });
+
     // setFormValues({
     //   title: "",
     //   content: "",
