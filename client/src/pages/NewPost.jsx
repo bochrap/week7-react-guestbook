@@ -20,7 +20,7 @@ export default function NewPost() {
       body: JSON.stringify(formValues),
     });
     setTimeout(() => {
-      window.location.href = `https://week7-project-client-x5qs.onrender.com/posts/category`;
+      window.location.href = `https://week7-project-client-x5qs.onrender.com/`;
     }, 1000);
   }
 

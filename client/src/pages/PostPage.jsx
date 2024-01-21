@@ -12,7 +12,7 @@ export default function PostPage() {
   function handleDelete() {
     fetch(`https://server-week7-project.onrender.com/posts/post/${id}`, { method: `DELETE`, redirect: `follow` });
     setTimeout(() => {
-      window.location.href = `https://week7-project-client-x5qs.onrender.com/posts/category`;
+      window.location.href = `https://week7-project-client-x5qs.onrender.com/`;
     }, 1000);
   }
 
