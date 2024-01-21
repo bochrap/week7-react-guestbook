@@ -1,22 +1,20 @@
-import { useState, useEffect } from "react";
-import { Link, useParams, Routes, Route } from "react-router-dom";
-import PostsList from "./PostsList";
+import { Link, Outlet } from "react-router-dom";
 
 export default function Posts() {
-  const [allPosts, setAllPosts] = useState([]);
+  // const [allPosts, setAllPosts] = useState([]);
   // const [byCategory, setByCategory] = useState([]);
 
-  useEffect(() => {
-    getAllPosts();
-    // getCategoryPosts();
-  }, []);
+  // useEffect(() => {
+  //   getAllPosts();
+  //   // getCategoryPosts();
+  // }, []);
 
-  async function getAllPosts() {
-    const response = await fetch("http://localhost:8080/posts");
-    const data = await response.json();
+  // async function getAllPosts() {
+  //   const response = await fetch("http://localhost:8080/posts");
+  //   const data = await response.json();
 
-    setAllPosts(data);
-  }
+  //   setAllPosts(data);
+  // }
 
   // async function getCategoryPosts() {
   //   const response = await fetch(`http://localhost:8080/posts/category/`);
@@ -29,26 +27,23 @@ export default function Posts() {
     <div>
       <div id="links-sort-div">
         <span>Sort by:</span>
-        <span>All</span>
-        <span>Technology</span>
-        <span>Travel</span>
-        <span>Food</span>
-        <span>Lifestyle</span>
+        <Link to={`/posts/category/`}>
+          <span>All</span>
+        </Link>
+        <Link to={`/posts/category/1`}>
+          <span>Technology</span>
+        </Link>
+        <Link to={`/posts/category/2`}>
+          <span>Travel</span>
+        </Link>
+        <Link to={`/posts/category/3`}>
+          <span>Food</span>
+        </Link>
+        <Link to={`/posts/category/4`}>
+          <span>Lifestyle</span>
+        </Link>
       </div>
-      <PostsList />
-      {/* <p>All the posts:</p>
-      <ul>
-        {allPosts.map((item) => {
-          return (
-            <div key={"div" + item.id}>
-              <li key={item.id + item.title}>
-                <Link to={`/posts/${item.id}`}>{item.title}</Link>
-              </li>
-              <p>❤️ {item.likes}</p>
-            </div>
-          );
-        })}
-      </ul> */}
+      <Outlet />
     </div>
   );
 }

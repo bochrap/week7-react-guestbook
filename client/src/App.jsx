@@ -5,6 +5,8 @@ import HomePage from "./pages/HomePage";
 import NewPost from "./pages/NewPost";
 import Footer from "./components/Footer";
 import PostPage from "./pages/PostPage";
+import AllPostsList from "./components/AllPostsList";
+import CategoryPostsList from "./components/CategoryPostsList";
 
 export default function App() {
   return (
@@ -12,9 +14,12 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/posts" element={<Posts />} />
+        <Route path="/posts/category/" element={<Posts />}>
+          <Route path="/posts/category/" element={<AllPostsList />} />
+          <Route path="/posts/category/:id" element={<CategoryPostsList />} />
+        </Route>
         <Route path="/newPost" element={<NewPost />} />
-        <Route path="/posts/:id" element={<PostPage />} />
+        <Route path="/posts/post/:id" element={<PostPage />} />
       </Routes>
       <Footer />
     </div>

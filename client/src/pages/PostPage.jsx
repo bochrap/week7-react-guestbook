@@ -6,7 +6,7 @@ export default function PostPage() {
   let { id } = useParams();
 
   function handleDelete() {
-    fetch(`http://localhost:8080/posts/${id}`, { method: `DELETE` });
+    fetch(`http://localhost:8080/posts/post/${id}`, { method: `DELETE` });
   }
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function PostPage() {
   }, []);
 
   async function getSinglePost() {
-    const response = await fetch(`http://localhost:8080/posts/${id}`);
+    const response = await fetch(`http://localhost:8080/posts/post/${id}`);
     const data = await response.json();
     setSinglePost(data[0]);
   }

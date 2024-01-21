@@ -24,13 +24,13 @@ app.get("/", (request, response) => {
 });
 
 //ALL POSTS
-app.get("/posts", async (request, response) => {
+app.get("/posts/category/", async (request, response) => {
   const result = await db.query(`SELECT * FROM posts`);
   response.json(result.rows);
 });
 
 //SINGLE POST
-app.get("/posts/:id", async (request, response) => {
+app.get("/posts/post/:id", async (request, response) => {
   const recordId = request.params.id;
 
   const result = await db.query(`SELECT * FROM posts WHERE id = $1`, [recordId]);
@@ -38,10 +38,10 @@ app.get("/posts/:id", async (request, response) => {
 });
 
 //CATEGORY POSTS
-app.get("/posts/category/:category", async (request, response) => {
-  const categoryId = request.params.category;
+app.get("/posts/category/:id", async (request, response) => {
+  const categoryId = request.params.id;
 
-  const result = await db.query(`SELECT posts.title, posts.content, categories.name AS category 
+  const result = await db.query(`SELECT posts.title, posts.content, categories.name AS category, posts.likes, posts.id
   FROM posts
   JOIN categories ON posts.category_id = categories.id
   WHERE categories.id = ${categoryId}`);
@@ -65,14 +65,14 @@ app.post("/posts", async (request, response) => {
   response.json(newPost.rows[0]);
 });
 
-app.delete("/posts/:id", async (request, response) => {
+app.delete("/posts/post/:id", async (request, response) => {
   const recordId = request.params.id;
   const result = await db.query("DELETE FROM posts WHERE id = $1", [recordId]);
   response.json(`Deleted entry wit id#${recordId}`);
 });
 
 //ADD LIKE
-app.put("/posts/:id/like", async (request, response) => {
+app.put("/posts/post/:id/like", async (request, response) => {
   const recordId = request.params.id;
   //   const { likes } = request.body;
   let operator = "+";
@@ -83,7 +83,7 @@ app.put("/posts/:id/like", async (request, response) => {
 });
 
 //REMOVE LIKE
-app.put("/posts/:id/unlike", async (request, response) => {
+app.put("/posts/post/:id/unlike", async (request, response) => {
   const recordId = request.params.id;
   //   const { likes } = request.body;
   let operator = "-";
