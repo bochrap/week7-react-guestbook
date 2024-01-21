@@ -8,13 +8,6 @@ export default function NewPost() {
     category_id: "",
   });
 
-  // useEffect(() => {
-  //   async function handleSubmit(event) {
-  //     event.preventDefault();
-  //   }
-  //   handleSubmit()
-  // }, [])
-
   function handleSubmit(event) {
     event.preventDefault();
     console.log(formValues);
@@ -29,13 +22,6 @@ export default function NewPost() {
     setTimeout(() => {
       window.location.href = `https://week7-project-client-x5qs.onrender.com/posts/category`;
     }, 1000);
-
-    // setFormValues({
-    //   title: "",
-    //   content: "",
-    //   likes: 0,
-    //   category_id: ""
-    // });
   }
 
   function handleInputChange(event) {
@@ -50,6 +36,7 @@ export default function NewPost() {
       <h2>Create new post</h2>
       <br />
       <br />
+      {/* <form onSubmit={handleSubmit}> */}
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title</label>
         <input type="text" id="title" name="title" value={formValues.title} required onChange={handleInputChange} />
