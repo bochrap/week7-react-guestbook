@@ -10,7 +10,7 @@ export default function CategoryPostsList() {
   }, [id]);
 
   async function getCategoryPosts() {
-    const response = await fetch(`http://localhost:8080/posts/category/${id}`);
+    const response = await fetch(`https://server-week7-project.onrender.com/posts/category/${id}`);
     const data = await response.json();
 
     setAllPosts(data);

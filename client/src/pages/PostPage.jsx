@@ -11,7 +11,7 @@ export default function PostPage() {
   });
 
   function handleDelete() {
-    fetch(`http://localhost:8080/posts/post/${id}`, { method: `DELETE` });
+    fetch(`https://server-week7-project.onrender.com/posts/post/${id}`, { method: `DELETE` });
   }
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function PostPage() {
   }, [localStorage, handleLike, likeStates]);
 
   async function getSinglePost() {
-    const response = await fetch(`http://localhost:8080/posts/post/${id}`);
+    const response = await fetch(`https://server-week7-project.onrender.com/posts/post/${id}`);
     const data = await response.json();
     setSinglePost(data[0]);
   }
@@ -34,7 +34,7 @@ export default function PostPage() {
       }));
       // setWasLiked(1);
       localStorage.setItem(`wasLiked_${id}`, 1);
-      fetch(`http://localhost:8080/posts/post/${id}/like`, { method: `PUT` });
+      fetch(`https://server-week7-project.onrender.com/posts/post/${id}/like`, { method: `PUT` });
       console.log("The post was liked");
     } else {
       setLikeStates((prevStates) => ({
@@ -43,7 +43,7 @@ export default function PostPage() {
       }));
       // setWasLiked(0);
       localStorage.setItem(`wasLiked_${id}`, 0);
-      fetch(`http://localhost:8080/posts/post/${id}/unlike`, { method: `PUT` });
+      fetch(`https://server-week7-project.onrender.com/posts/post/${id}/unlike`, { method: `PUT` });
       console.log("The post was unlked");
     }
   }

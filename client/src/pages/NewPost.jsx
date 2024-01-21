@@ -19,7 +19,7 @@ export default function NewPost() {
     event.preventDefault();
     console.log(formValues);
 
-    fetch(`http://localhost:8080/posts`, {
+    fetch(`https://server-week7-project.onrender.com/posts`, {
       method: `POST`,
       headers: {
         "Content-type": "application/json",
