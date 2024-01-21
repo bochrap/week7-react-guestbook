@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { Link, useParams, Routes, Route } from "react-router-dom";
-import PostsList from "./PostsList";
+import { Link, useParams } from "react-router-dom";
 
-export default function Posts() {
+export default function PostsList() {
   const [allPosts, setAllPosts] = useState([]);
   // const [byCategory, setByCategory] = useState([]);
 
@@ -18,25 +17,9 @@ export default function Posts() {
     setAllPosts(data);
   }
 
-  // async function getCategoryPosts() {
-  //   const response = await fetch(`http://localhost:8080/posts/category/`);
-  //   const data = await response.json();
-
-  //   setByCategory(data);
-  // }
-
   return (
-    <div>
-      <div id="links-sort-div">
-        <span>Sort by:</span>
-        <span>All</span>
-        <span>Technology</span>
-        <span>Travel</span>
-        <span>Food</span>
-        <span>Lifestyle</span>
-      </div>
-      <PostsList />
-      {/* <p>All the posts:</p>
+    <div id="posts-list">
+      <p>All the posts:</p>
       <ul>
         {allPosts.map((item) => {
           return (
@@ -48,7 +31,7 @@ export default function Posts() {
             </div>
           );
         })}
-      </ul> */}
+      </ul>
     </div>
   );
 }

@@ -24,6 +24,7 @@ export default function PostPage() {
       <p>{singlePost.id}</p>
       <p>{singlePost.title}</p>
       <p>{singlePost.content}</p>
+      <p>❤️ {singlePost.likes}</p>
       <button onClick={handleDelete}>DELETE POST</button>
     </div>
   );
