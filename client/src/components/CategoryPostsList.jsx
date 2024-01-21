@@ -18,7 +18,6 @@ export default function CategoryPostsList() {
 
   return (
     <div id="posts-list">
-      <p>All the posts:</p>
       <ul>
         {allPosts.map((item) => {
           return (

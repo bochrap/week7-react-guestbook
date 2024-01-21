@@ -2,7 +2,7 @@ import { Link, Outlet } from "react-router-dom";
 
 export default function Posts() {
   return (
-    <div>
+    <div id="content">
       <div id="links-sort-div">
         <span>Sort by:</span>
         <Link to={`/posts/category/`}>

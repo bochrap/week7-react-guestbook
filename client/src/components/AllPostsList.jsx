@@ -18,7 +18,6 @@ export default function AllPostsList() {
 
   return (
     <div id="posts-list">
-      <p>All the posts:</p>
       <ul>
         {allPosts.map((item) => {
           return (

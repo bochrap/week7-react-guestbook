@@ -43,11 +43,15 @@ export default function NewPost() {
   }
 
   return (
-    <div>
-      <h1>Create a new post</h1>
+    <div id="content">
+      <h2>Create new post</h2>
+      <br />
+      <br />
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title</label>
         <input type="text" id="title" name="title" value={formValues.title} required onChange={handleInputChange} />
+        <br />
+        <br />
         <label htmlFor="content">Add content</label>
         <textarea name="content" id="content" value={formValues.content} cols="50" rows="5" required onChange={handleInputChange}></textarea>
         <select name="category_id" id="category_id" required onChange={handleInputChange} defaultValue={""}>
@@ -59,11 +63,6 @@ export default function NewPost() {
         </select>
         <button type="submit">Submit</button>
       </form>
-      <div>
-        <p>Title is: {formValues.title}</p>
-        <p>Content is: {formValues.content}</p>
-        <p>Category is: {formValues.category_id}</p>
-      </div>
     </div>
   );
 }

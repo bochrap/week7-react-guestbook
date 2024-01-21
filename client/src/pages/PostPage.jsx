@@ -49,17 +49,24 @@ export default function PostPage() {
   }
 
   return (
-    <div>
-      <p>{singlePost.id}</p>
-      <p>{singlePost.title}</p>
+    <div id="content">
+      {/* <p>{singlePost.id}</p> */}
+      <h2>{singlePost.title}</h2>
+      <br />
       <p>{singlePost.content}</p>
+      <hr />
+      <br />
       <p>
         ❤️ {singlePost.likes}
         <span>
-          <button onClick={handleLike}>Like</button>
+          <button id="like-btn" onClick={handleLike}>
+            Like
+          </button>
         </span>
       </p>
-      <button onClick={handleDelete}>DELETE POST</button>
+      <button id="delete-btn" onClick={handleDelete}>
+        DELETE POST
+      </button>
     </div>
   );
 }
