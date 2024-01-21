@@ -4,11 +4,9 @@ import { Link, useParams } from "react-router-dom";
 export default function CategoryPostsList() {
   const [allPosts, setAllPosts] = useState([]);
   const { id } = useParams();
-  // const [byCategory, setByCategory] = useState([]);
 
   useEffect(() => {
     getCategoryPosts();
-    // getCategoryPosts();
   }, [id]);
 
   async function getCategoryPosts() {
@@ -17,13 +15,6 @@ export default function CategoryPostsList() {
 
     setAllPosts(data);
   }
-
-  // async function getCategoryPosts() {
-  //   const response = await fetch(`http://localhost:8080/posts/category/${id}`);
-  //   const data = await response.json();
-
-  //   setByCategory(data);
-  // }
 
   return (
     <div id="posts-list">
