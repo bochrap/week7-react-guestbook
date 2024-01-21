@@ -39,6 +39,17 @@ header {
   background-color: rgb(48, 48, 48);
 }
 
+header nav {
+  display: flex;
+  margin-left: 5rem;
+  gap: 2rem;
+}
+
+a.active {
+  text-decoration: underline 2px;
+  font-weight: bold;
+}
+
 footer {
   display: flex;
   height: 3rem;
