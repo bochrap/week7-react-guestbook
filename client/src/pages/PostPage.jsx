@@ -4,14 +4,16 @@ import { useParams } from "react-router-dom";
 export default function PostPage() {
   let { id } = useParams();
   const [singlePost, setSinglePost] = useState({});
-  // const [wasLiked, setWasLiked] = useState(parseInt(localStorage.getItem("wasLiked")) || 0);
   const [likeStates, setLikeStates] = useState(() => {
     const storedState = localStorage.getItem(`wasLiked_${id}`);
     return { [`wasLiked${id}`]: storedState ? parseInt(storedState) : 0 };
   });
 
   function handleDelete() {
-    fetch(`https://server-week7-project.onrender.com/posts/post/${id}`, { method: `DELETE` });
+    fetch(`https://server-week7-project.onrender.com/posts/post/${id}`, { method: `DELETE`, redirect: `follow` });
+    setTimeout(() => {
+      window.location.href = `https://week7-project-client-x5qs.onrender.com/posts/category`;
+    }, 1000);
   }
 
   useEffect(() => {
@@ -32,7 +34,6 @@ export default function PostPage() {
         ...prevStates,
         [`wasLiked${id}`]: 1,
       }));
-      // setWasLiked(1);
       localStorage.setItem(`wasLiked_${id}`, 1);
       fetch(`https://server-week7-project.onrender.com/posts/post/${id}/like`, { method: `PUT` });
       console.log("The post was liked");
@@ -41,7 +42,6 @@ export default function PostPage() {
         ...prevStates,
         [`wasLiked${id}`]: 0,
       }));
-      // setWasLiked(0);
       localStorage.setItem(`wasLiked_${id}`, 0);
       fetch(`https://server-week7-project.onrender.com/posts/post/${id}/unlike`, { method: `PUT` });
       console.log("The post was unlked");
@@ -50,7 +50,6 @@ export default function PostPage() {
 
   return (
     <div id="content">
-      {/* <p>{singlePost.id}</p> */}
       <h2>{singlePost.title}</h2>
       <br />
       <p>{singlePost.content}</p>
